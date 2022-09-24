@@ -19,14 +19,14 @@ node{
    }
    stage('Docker Image Push'){
    withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
-   sh "docker login -u abiramipalani -p ${dockerPassword}"
+   sh "docker login -u abiramipalani -p $dockerPassword"
     }
    sh 'docker push abiramipalani/myweb:0.0.2'
    }
    stage('Nexus Image Push'){
-   sh "docker login -u admin -p admin123 35.154.76.30:8083"
-   sh "docker tag abiramipalani/myweb:0.0.2 35.154.76.30:8083/abi:1.0.0"
-   sh 'docker push 35.154.76.30:8083/abi:1.0.0'
+   sh "docker login -u admin -p admin123 65.2.191.217:8083"
+   sh "docker tag abiramipalani/myweb:0.0.2 65.2.191.217:8083/abi:1.0.0"
+   sh 'docker push 65.2.191.217:8083/abi:1.0.0'
    }
    stage('Remove Previous Container'){
 	try{
